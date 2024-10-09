@@ -18,6 +18,15 @@ const forumController = {
         }
 
     },
+    getAll: async(req,res) =>{
+        try{
+            const forumPublications = await Forum.find()
+
+            res.json(forumPublications)
+        }catch(error){
+            console.log(error)
+        }
+    }
 };
 
 export default forumController;
