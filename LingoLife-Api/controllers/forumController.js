@@ -2,7 +2,7 @@ import { Forum } from "../models/Forum.js";
 
 const forumController = {
 
-    crate: async(req,res) =>{
+    create: async(req,res) =>{
         try{
             const forum = {
                 Title: req.body.Title,

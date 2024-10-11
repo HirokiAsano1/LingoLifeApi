@@ -11,6 +11,10 @@ const ForumSchema = new Schema({
         type: String,
         required: true,
     },
+    filmeSrc :{
+       type:String,
+        required :true
+    }
 },
     { timestamps: true } 
 );
