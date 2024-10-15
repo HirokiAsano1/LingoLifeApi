@@ -7,7 +7,6 @@ import upload from '../configMulter/multer.js';
 
 router.post("/publication", upload.single("file"), forumController.create);
 
-
 router.route("/publication").get((req, res) => forumController.getAll(req, res));
 
 

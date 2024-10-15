@@ -1,22 +1,34 @@
 import { Forum } from "../models/Forum.js";
+import fs from 'fs';
 
 const forumController = {
 
-    create: async(req,res) =>{
-        try{
+    create: async (req, res) => {
+        try {
+            const file = req.file;  
+            console.log(file); // Verifica o conteúdo de req.file
+            if (!file) {
+                return res.status(400).json({ msg: 'Nenhum arquivo foi enviado!' });
+            }
+    
             const forum = {
-                Title: req.body.Title,
-                description : req.body.description
+                Title: req.body.Title,  
+                description: req.body.description,  
+                filmeSrc: file.path,
             };
 
             const response = await Forum.create(forum);
-            res.status(201).json({response, msg: "Publicação Postada no Forum!" });
-        }
-        catch(error)
-        {
-            console.log(error);
-        }
+            res.status(201).json({ response, msg: "Publicação Postada no Fórum!" });
 
+        } catch (error) {
+            if (error instanceof multer.MulterError) {
+                if (error.code === "LIMIT_FILE_SIZE") {
+                    return res.status(400).json({ msg: "Erro: O tamanho do arquivo não é permitido!" });
+                }
+            }
+            console.log(error);
+            res.status(500).json({ msg: "Erro ao criar a publicação!" });
+        }
     },
     getAll: async(req,res) =>{
         try{
@@ -56,6 +68,7 @@ const forumController = {
                   return;
                 }
             
+            fs.unlinkSync(forumPublications.filmeSrc)
             const deletedPublication = await Forum.findByIdAndDelete(id);
 
             res.status(200).json({deletedPublication,msg:"Publicação deleteda com sucesso"});
