@@ -6,15 +6,10 @@ const forumController = {
     create: async (req, res) => {
         try {
             const file = req.file;  
-            console.log(file); // Verifica o conteúdo de req.file
-            if (!file) {
-                return res.status(400).json({ msg: 'Nenhum arquivo foi enviado!' });
-            }
-    
             const forum = {
                 Title: req.body.Title,  
                 description: req.body.description,  
-                filmeSrc: file.path,
+                filmeSrc: file ? file.path : null,
             };
 
             const response = await Forum.create(forum);
