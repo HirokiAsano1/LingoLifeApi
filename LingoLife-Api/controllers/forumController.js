@@ -7,9 +7,9 @@ const forumController = {
         try {
             const file = req.file;  
             const forum = {
-                Title: req.body.Title,  
-                description: req.body.description,  
-                filmeSrc: file ? file.path : null,
+                title: req.body.title,  
+                content: req.body.content,  
+                fileSrc: file ? file.path : null,
             };
 
             const response = await Forum.create(forum);
@@ -62,11 +62,18 @@ const forumController = {
                   res.status(404).json({msg:"Publicação não encontrada"});
                   return;
                 }
-            
-            fs.unlinkSync(forumPublications.filmeSrc)
-            const deletedPublication = await Forum.findByIdAndDelete(id);
-
-            res.status(200).json({deletedPublication,msg:"Publicação deleteda com sucesso"});
+                
+            if(forumPublications.fileSrc){
+                fs.unlinkSync(forumPublications.fileSrc)
+                const deletedPublication = await Forum.findByIdAndDelete(id);
+                res.status(200).json({deletedPublication,msg:"Publicação deleteda com sucesso"});
+            }
+            else{
+                const deletedPublication = await Forum.findByIdAndDelete(id);
+                res.status(200).json({deletedPublication,msg:"Publicação deleteda com sucesso"});
+            }
+           
+           
         } catch (error) {
             console.log(error);
         }
@@ -81,8 +88,8 @@ const forumController = {
         }
 
         const updatedPublication = {
-        Title: req.body.Title || existingPublication.Title,
-        description: req.body.description || existingPublication.description
+        title: req.body.title || existingPublication.title,
+        content: req.body.content || existingPublication.content
     };
 
         const updatePublication = await Forum.findByIdAndUpdate(id,updatedPublication);

@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const ForumSchema = new Schema({
-    Title:{
+    title:{
         type: String,
         required:true
     },
-    description:{
+    content:{
         type: String,
         required: true,
     },
-    filmeSrc :{
+    fileSrc :{
        type:String,
        required : false ,
     }

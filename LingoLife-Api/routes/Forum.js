@@ -5,7 +5,7 @@ import forumController from '../controllers/forumController.js';
 import upload from '../configMulter/multer.js';
 
 
-router.route("/publication").post(upload.single("file"), (req, res) => { forumController.create(req, res);}); // http://127.0.0.1:5000/forum/publication
+router.route("/publication").post(upload.single("fileSrc"), (req, res) => { forumController.create(req, res);}); // http://127.0.0.1:5000/forum/publication
 
 router.route("/publication").get((req, res) => forumController.getAll(req, res)); // http://127.0.0.1:5000/forum/publication
 
