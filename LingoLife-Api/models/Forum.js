@@ -14,7 +14,13 @@ const ForumSchema = new Schema({
     fileSrc :{
        type:String,
        required : false ,
-    }
+    },
+    language: {
+        type: String,
+        enum: ['portuguese', 'english', 'spanish', 'french', 'italian'],
+        required: true
+      }
+
 },
     { timestamps: true } 
 );

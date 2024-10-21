@@ -1,5 +1,7 @@
 import { Forum } from "../models/Forum.js";
 import fs from 'fs';
+import multer from '../configMulter/multer.js';
+
 
 const forumController = {
 
@@ -10,6 +12,7 @@ const forumController = {
                 title: req.body.title,  
                 content: req.body.content,  
                 fileSrc: file ? file.path : null,
+                language : req.body.language,
             };
 
             const response = await Forum.create(forum);
@@ -89,7 +92,8 @@ const forumController = {
 
         const updatedPublication = {
         title: req.body.title || existingPublication.title,
-        content: req.body.content || existingPublication.content
+        content: req.body.content || existingPublication.content,
+        language:req.body.language || existingPublication.language,
     };
 
         const updatePublication = await Forum.findByIdAndUpdate(id,updatedPublication);
