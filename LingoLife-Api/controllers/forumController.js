@@ -1,6 +1,6 @@
 import { Forum } from "../models/Forum.js";
 import fs from 'fs';
-import multer from '../configMulter/multer.js';
+import multer from 'multer';
 
 
 const forumController = {

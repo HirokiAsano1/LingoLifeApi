@@ -17,9 +17,8 @@ const ForumSchema = new Schema({
     },
     language: {
         type: String,
-        enum: ['portuguese', 'english', 'spanish', 'french', 'italian'],
         required: true
-      }
+    }
 
 },
     { timestamps: true } 
