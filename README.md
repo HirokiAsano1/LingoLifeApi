@@ -37,8 +37,6 @@ Essa API faz parte do projeto final **LingoLife**, um sistema completo para cone
 | `PUT` | `/forum/publication/:id` | Atualiza uma postagem existente |
 | `DELETE` | `/forum/publication/:id` | Remove uma postagem do fórum |
 
-### **Uploads de Arquivos**
-- `POST /upload` → Fazer upload de um arquivo para uma postagem
 
 ## Instalação e Execução
 
