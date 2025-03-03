@@ -44,7 +44,7 @@ Essa API faz parte do projeto final **LingoLife**, um sistema completo para cone
 
 ### **1. Clone o Repositório**
 ```sh
-git clone https://github.com/seu-usuario/LingoLifeApi.git
+git clone https://github.com/HirokiAsano1/LingoLifeApi
 cd server
 npm install
 npm start
